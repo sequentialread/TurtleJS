@@ -156,7 +156,7 @@ function __TurtleJS(global) {
     function penUp() {
       self.turtLines.push(self.turtCurrentLine);
       self.turtCurrentLine = {
-        points: []
+        points: [],
         width: self.turtCurrentLine.width,
         color: self.turtCurrentLine.color,
         fillColor: self.turtCurrentLine.fillColor,
