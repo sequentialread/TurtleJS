@@ -155,7 +155,14 @@ function __TurtleJS(global) {
     }
     function penUp() {
       self.turtLines.push(self.turtCurrentLine);
-      self.turtCurrentLine = { points: [] };
+      self.turtCurrentLine = {
+        points: []
+        width: self.turtCurrentLine.width,
+        color: self.turtCurrentLine.color,
+        fillColor: self.turtCurrentLine.fillColor,
+        opacity: self.turtCurrentLine.opacity,
+        layer: self.turtCurrentLine.layer
+      };
       self.penIsUp = true;
     }
     function penDown() {
