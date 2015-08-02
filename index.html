@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='app.css' rel='stylesheet' type='text/css'>
+  <script src="vendor/core.min.js"  type="text/javascript" charset="utf-8"></script>
+  <script src="vendor/shortcut.js"  type="text/javascript" charset="utf-8"></script>
+  <script src="helpers.js"  type="text/javascript" charset="utf-8"></script>
+
+  <title>TurtleJS</title>
+</head>
+
+<body>
+<div id="__toolbar">
+  <span class="title">TurtleJS 0.0.0</span>
+  <span class="green button" id="__runButton">Run</span>
+  <span class="blue button" id="__helpButton">Help</span>
+</div>
+<pre id="__editor">
+</pre>
+
+<svg id="__stage" viewbox="-250 -250 500 500">
+</svg>
+
+<div id="__consoleBar">
+
+</div>
+<div id="__console" style="display:none">
+  <span>Console</span>
+  <span class="blue button" id="__closeConsoleButton">Close</span>
+  <span class="blue button" id="__clearLogsButton">Clear</span>
+
+  <div id="__consoleContainer" style="margin-top:30px;">
+  </div>
+</div>
+
+<div id="__loadingScreen" style="display:none">
+  <span class="title">Running your code...</span>
+</div>
+
+<div id="__help" style="display:none">
+  <span class="title">Quick Help</span>
+
+  <span id="__hotkeyHelp" style="position:relative; left:4%">
+  </span>
+  <span class="blue button" id="__closeHelpButton">Close</span>
+  <hr/>
+  <div class="container">
+<pre id="__helpContent1"  class="helpContent">
+// this is a comment. not code.
+
+// here's how to move the turtle:
+forward(50);
+right(90);
+left(90);
+
+// reset the position and rotation
+// of the turtle:
+home();
+
+// tell it when to draw a line:
+penUp();
+penDown();
+
+// change the color of the line:
+// (using a CSS3 color definition)
+pushColor('red');
+pushColor('rgba(255,0,0,0.5)');
+pushColor('#BEEEEF');
+pushColor('none');
+
+// reset the color to what it was before:
+popColor();
+
+// change the fill color of the shape:
+// (using a CSS3 color definition)
+pushFillColor('gray');
+...
+popFillColor();
+
+// change the width of the line:
+// (in pixels)
+pushWidth(2);
+...
+popWidth();
+
+// change the opacity of the shape/line:
+// (from zero to one)
+pushOpacity(0.5);
+...
+popOpacity();
+
+// position the shape/line over or under:
+pushLayer(5);
+...
+popLayer();
+
+</pre>
+
+<pre id="__helpContent2" class="helpContent">
+// define a variable:
+var distance = 50;
+
+// use a variable:
+forward(distance);
+
+// define a function:
+function moveForward50 () {
+  forward(50);
+}
+
+// call a function:
+moveForward50();
+
+// display something for debugging:
+console.log(distance);
+
+// make a decision:
+if(distance > 30) {
+  console.log('distance is '
+      + 'greater than 30');
+} else {
+  console.log('distance is '
+      + 'less than or equal to 30');
+}
+
+// functions can have parameters:
+function moveAndTurn (dist, rot) {
+  forward(dist);
+  right(rot);
+}
+moveForwardAndTurn(50, 90);
+
+//loop over the same code n times
+var n = 5;
+while(n > 0) {
+  n = n - 1;
+  console.log('memememememememe');
+}
+
+// this infinite loop will crash:
+var n = 5;
+while(n > 0) {
+  console.lag('memememememememe');
+}
+
+// this is a shortcut for loops.
+// it's harder to cause an infinite loop
+// this way. it uses the form:
+// for(initializer; condition; incrementer)
+for(var i = 0; i < 4; i++) {
+  forward(50);
+  right(90);
+}
+
+// this is a recursive function.
+// it calls itself, which calls itself again.
+// also capable of crashing if done wrong.
+function abacabadabacaba (letters, depth) {
+
+  // if not provided with a depth argument,
+  // default to zero.
+  if(depth === undefined) depth = 0;
+
+  var newDepth = depth+1;
+  var letter =
+    letters[letters.length-newDepth];
+
+  if(newDepth == letters.length) {
+
+  	// we are at our last step,
+    // so don't recurse any more.
+    return letter;
+  } else {
+
+  	// we need to go deeper
+    var eitherSide =
+      abacabadabacaba(letters, newDepth);
+    return eitherSide + letter + eitherSide;
+  }
+}
+
+// to log 'abacabadabacaba':
+console.log(abacabadabacaba(
+  ['a', 'b', 'c', 'd']
+));
+
+//guess what this will do?
+console.log(abacabadabacaba(
+  ['a', 'b', 'c', 'd', 'f']
+));
+
+</pre>
+
+<pre id="__helpContent3"  class="helpContent">
+// this is a string of characters
+var greeting = 'Hello World!';
+
+// HELLO WORLD!
+var entusiasticGreeting =
+  greeting.toUpperCase();
+
+// these are number
+var coolnessAmount = -5;
+var pi = 3.14;
+
+// to increase your coolness,
+// you can assign it a new value
+coolnessAmount = (coolnessAmount + 3);
+
+// this is a shortcut for the same statement
+coolnessAmount += 3;
+
+// testing whether things are equal is
+// different from assigning a value.
+// the following will run, but it will
+// assign 3 instead of testing for 3
+if(coolnessAmount = 3) {
+  ...
+}
+
+//you really want:
+if(coolnessAmount == 3) {
+
+}
+
+// this is an Array
+var shoppingList = [
+  'apples',
+  'oranges',
+  'bananas'
+];
+var emptyList = [];
+var otherEmptyList = new Array();
+
+// this is an object:
+var sonic = {
+  speed: Infinity,
+  rings: 1,
+  increaseSpeed: function(amount) {
+    this.speed += amount;
+  }
+};
+
+//you can get and set most object properties.
+sonic.rings = 4;
+console.log('sonic is going '
+    + sonic.speed + ' miles per hour with '
+    + sonic.rings + ' rings');
+
+//even functions can be treated like values.
+//and the functions 'remember' the state of
+//outside variables when they were created.
+//this is one of javascript's core features.
+var speedMultiplier = 5;
+sonic.increaseSpeed = function (amount) {
+  this.speed += amount * speedMultiplier;
+}
+
+
+</pre>
+
+
+
+  </div>
+
+</div>
+
+<script src="vendor/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="app.js" type="text/javascript" charset="utf-8"></script>
+<script src="mdnSearch.js" type="text/javascript" charset="utf-8"></script>
+<script src="ui.js" type="text/javascript" charset="utf-8"></script>
+
+
+</body>
+</html>
