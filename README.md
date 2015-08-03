@@ -5,7 +5,7 @@ saved in your browser.
 
 ### [Live Demo](http://forestjohnson.github.io/TurtleJS/)
 
-* ACE HTML5 Code editor.
+* ace HTML5 Code editor.
 * Useful cheat sheet page.
 * Cmd-; to search for selected text on MDN using google JSON search API.
 * Error handling and console.log go to integrated console.
