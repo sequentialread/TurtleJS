@@ -8,6 +8,7 @@ saved in your browser.
 * Cmd-; to search for selected text on MDN using google JSON search API.
 * Error handling and console.log go to integrated console.
 
+![screenshot](TurtleJS.png)
 
 ### Simple API for drawing:
 ```
