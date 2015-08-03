@@ -3,7 +3,7 @@
 A simple JavaScript clone of the LOGO drawing language. Write turtle programs in JavaScript,
 saved in your browser.
 
-    NOTE:  this software is a fun toy written in two days. It only supports firefox and chrome right now. It is not written to be perfect, mostly I wrote it for fun.
+ * NOTE:  this software is a fun toy written in two days. It only supports firefox and chrome right now. It is not written to be perfect, mostly I wrote it for fun.
 
 ### [Live Demo](http://forestjohnson.github.io/TurtleJS/)
 
