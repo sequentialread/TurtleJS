@@ -5,7 +5,7 @@ saved in your browser.
 
  * NOTE:  this software is a fun toy written in two days. It only supports firefox and chrome right now. It is not supposed to be clean or perfect, mostly I wrote it for fun.
 
-### [Live Demo](http://forestjohnson.github.io/TurtleJS/)
+### [Live Demo](http://sequentialread.github.io/TurtleJS/)
 
 * Ace code editor.
 * Useful cheat sheet page.
