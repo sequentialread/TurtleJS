@@ -72,16 +72,20 @@
   var hotkeyHelp = global.document.getElementById('__hotkeyHelp');
   if(hotkeyHelp){
     hotkeyHelp.innerHTML =
-      "ProTip: Quick search MDN for the "
-    + "selected text with ( "+commandSymbolHTML+" "+mdnSearchShortcutKey+" )";
+      "ProTip: Quick search Mozilla Developer Network (MDN) for the "
+    + "selected text with  "+commandSymbolHTML+" + "+mdnSearchShortcutKey+" ";
   }
 
   global.document.getElementById('__helpButton').onclick = function () {
-    global.document.getElementById('__help').style.display = 'block';
+    global.document.getElementById('__helpContainer').style.display = 'block';
   };
 
   global.document.getElementById('__closeHelpButton').onclick = function () {
-    global.document.getElementById('__help').style.display = 'none';
+    global.document.getElementById('__helpContainer').style.display = 'none';
+  };
+
+  global.document.getElementById('__closeMdnButton').onclick = function () {
+    global.document.getElementById('__mdnIframeContainer').style.display = 'none';
   };
 
   global.document.getElementById('__consoleBar').onclick = function () {
@@ -91,6 +95,17 @@
   global.document.getElementById('__closeConsoleButton').onclick = function () {
     global.document.getElementById('__console').style.display = 'none';
   };
+
+  var KEYCODE_ESCAPE = 27;
+  window.addEventListener("keydown", (event) => {
+    if(event.keyCode == KEYCODE_ESCAPE) {
+      if(document.getElementById('__mdnIframeContainer').style.display == 'block') {
+        document.getElementById('__mdnIframeContainer').style.display = 'none';
+      } else if(document.getElementById('__helpContainer').style.display == 'block') {
+        document.getElementById('__helpContainer').style.display = 'none';
+      }
+    }
+  }, false);
 
   shortcut.add(
     (isMac ? 'Meta' : 'Ctrl')+'+'+runShortcutKey,

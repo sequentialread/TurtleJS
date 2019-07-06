@@ -14,7 +14,7 @@
 
 <body>
 <div id="__toolbar">
-  <span class="title">TurtleJS 0.0.0</span>
+  <span class="title">TurtleJS 0.1.0</span>
 
   <a id='githubLink' href="https://github.com/ForestJohnson/TurtleJS">Github</a>
   <span class="green button" id="__runButton">Run</span>
@@ -42,7 +42,20 @@
   <span class="title">Running your code...</span>
 </div>
 
-<div id="__help" style="display:none">
+<div id="__mdnIframeContainer" style="display:none">
+  <div class="flexbox-container">
+    <div class="flexbox-row">
+      <span class="title-small" id="__mdnIframeTitle"></span>
+      <span class="blue button" id="__closeMdnButton">Close</span>
+      <hr/>
+      <button id="__mdnIframeBackButton" disabled="true">&lt;</button>
+      <input type="text" id="__mdnIframeUrlBar" value="" readonly>
+    </div>
+    <iframe id="__mdnIframe"></iframe>
+  </div>
+</div>
+
+<div id="__helpContainer" style="display:none">
   <span class="title">Quick Help</span>
 
   <span id="__hotkeyHelp" style="position:relative; left:4%">
@@ -62,8 +75,9 @@ left(90);
 // of the turtle:
 home();
 
-// tell it when to draw a line:
+// tell it when to draw and when not to draw:
 penUp();
+forward(50);
 penDown();
 
 // change the color of the line:
