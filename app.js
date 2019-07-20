@@ -1,17 +1,19 @@
-var global = this;
-global.__tjs = new __TurtleJS(global);
+"use strict";
 
-function __TurtleJS(global) {
+var myglobal = this;
+myglobal.__tjs = new __TurtleJS(myglobal);
+
+function __TurtleJS(myglobal) {
   var self = this;
   var svgNamespace = "http://www.w3.org/2000/svg";
   var __turtleColor = '#d0d0c0';
   var __turtleStrokeWidth = 1;
 
 
-  self.stage = global.document.getElementById('__stage');
+  self.stage = myglobal.document.getElementById('__stage');
 
   self.drawTurtle = function (x,y,rotation) {
-    self.turtleTransform = global.document.createElementNS(svgNamespace, 'g');
+    self.turtleTransform = myglobal.document.createElementNS(svgNamespace, 'g');
     self.turtleTransform.setAttribute(
       'transform', 'translate('+x+', '+y+'), rotate('+rotation+')');
     var turtle = self.createSvgLine();
@@ -23,7 +25,7 @@ function __TurtleJS(global) {
 
   self.createSvgLine = function (lineObject) {
     lineObject = lineObject || {};
-    var line = global.document.createElementNS(svgNamespace, 'path');
+    var line = myglobal.document.createElementNS(svgNamespace, 'path');
     line.setAttribute('fill', lineObject.fillColor || 'none');
     line.setAttribute('opacity', lineObject.opacity || 1);
     line.setAttribute('stroke', lineObject.color || __turtleColor);
@@ -40,18 +42,18 @@ function __TurtleJS(global) {
     // addLog is defined in the ui.js file
     log: function(logObject) {
       logObject.type = 'info';
-      global.__tjs.addLog(logObject);
+      myglobal.__tjs.addLog(logObject);
     },
     error: function(logObject) {
       logObject.type = 'error';
-      global.__tjs.addLog(logObject);
+      myglobal.__tjs.addLog(logObject);
     }
   };
 
   self.runTurtleJS = function() {
     var __turtleJS = self.editor.getValue();
-    var __oldConsole = global.console;
-    global.console = {
+    var __oldConsole = myglobal.console;
+    myglobal.console = {
       log: function() {
 
         var position = {};
@@ -102,14 +104,22 @@ function __TurtleJS(global) {
        ,'  };'
        ,'}'
        ,'exception;'].join('\n');
-    var exception = eval(__turtleJSWithTryCatch);
-    global.console = __oldConsole;
-    if(exception) {
+    
+    var error = null;
+    try {
+      error = eval(__turtleJSWithTryCatch);
+    } catch (outerErr) {
+      error = outerErr;
+    }
+
+    myglobal.console = __oldConsole;
+
+    if(error) {
       self.logger.error({
-        lineNumber: exception.stack.lineNumber,
-        charOffset: exception.stack.charOffset,
-        message: exception.name +': ' + exception.message
-        + (exception.stack.lineNumber ? ' at line ' + exception.stack.lineNumber : '')
+        lineNumber: error.stack.lineNumber,
+        charOffset: error.stack.charOffset,
+        message: error.name +': ' + error.message
+        + (error.stack.lineNumber ? ' at line ' + error.stack.lineNumber : '')
       });
     }
     penUp();

@@ -1,7 +1,9 @@
+"use strict";
+
 (function(__tjs){
 
   __tjs.allAceEditors = [];
-  var isMac = global.navigator.appVersion.indexOf("Mac")!=-1;
+  var isMac = myglobal.navigator.appVersion.indexOf("Mac")!=-1;
   var commandSymbolHTML = isMac ? '&#8984;' : 'Ctrl';
   var mdnSearchShortcutKey = ';';
   var runShortcutKey = 'R';
@@ -29,7 +31,7 @@
 
   var storedFileKey = '__tjs.storedFile';
   var storedFile = localStorage[storedFileKey];
-  global.setInterval(function(){
+  myglobal.setInterval(function(){
     localStorage[storedFileKey] = __tjs.editor.getValue();
   }, 3000);
 
@@ -62,38 +64,39 @@
     __tjs.allAceEditors.push(helpContentAce);
   }
 
-  var runButton = global.document.getElementById('__runButton');
+  var runButton = myglobal.document.getElementById('__runButton');
   if(runButton){
     runButton.innerHTML = "Run ( "+commandSymbolHTML+" "+runShortcutKey+" )";
     runButton.onclick = function () {
       runTurtleJS();
     };
   }
-  var hotkeyHelp = global.document.getElementById('__hotkeyHelp');
+  var hotkeyHelp = myglobal.document.getElementById('__hotkeyHelp');
   if(hotkeyHelp){
     hotkeyHelp.innerHTML =
-      "ProTip: Quick search Mozilla Developer Network (MDN) for the "
-    + "selected text with  "+commandSymbolHTML+" + "+mdnSearchShortcutKey+" ";
+      "ProTip: For information on elements of JavaScript, search for the "
+    + "selected text with  "+commandSymbolHTML+" + "+mdnSearchShortcutKey+" <br/>"
+    + "ProTip2: This also works for error messages in the error console. ";
   }
 
-  global.document.getElementById('__helpButton').onclick = function () {
-    global.document.getElementById('__helpContainer').style.display = 'block';
+  myglobal.document.getElementById('__helpButton').onclick = function () {
+    myglobal.document.getElementById('__helpContainer').style.display = 'block';
   };
 
-  global.document.getElementById('__closeHelpButton').onclick = function () {
-    global.document.getElementById('__helpContainer').style.display = 'none';
+  myglobal.document.getElementById('__closeHelpButton').onclick = function () {
+    myglobal.document.getElementById('__helpContainer').style.display = 'none';
   };
 
-  global.document.getElementById('__closeMdnButton').onclick = function () {
-    global.document.getElementById('__mdnIframeContainer').style.display = 'none';
+  myglobal.document.getElementById('__closeMdnButton').onclick = function () {
+    myglobal.document.getElementById('__mdnIframeContainer').style.display = 'none';
   };
 
-  global.document.getElementById('__consoleBar').onclick = function () {
-    global.document.getElementById('__console').style.display = 'block';
+  myglobal.document.getElementById('__consoleBar').onclick = function () {
+    myglobal.document.getElementById('__console').style.display = 'block';
   };
 
-  global.document.getElementById('__closeConsoleButton').onclick = function () {
-    global.document.getElementById('__console').style.display = 'none';
+  myglobal.document.getElementById('__closeConsoleButton').onclick = function () {
+    myglobal.document.getElementById('__console').style.display = 'none';
   };
 
   var KEYCODE_ESCAPE = 27;
@@ -122,14 +125,14 @@
 
 
   __tjs.addLog = function (logObject) {
-    var container = global.document.getElementById('__consoleContainer');
+    var container = myglobal.document.getElementById('__consoleContainer');
     if(__tjs.logs.length >= maxLogsCount) {
       container.removeChild(container.children[0]);
       __tjs.logs.unshift();
     }
 
     __tjs.logs.push(logObject);
-    var newLogElement = global.document.createElement('div');
+    var newLogElement = myglobal.document.createElement('div');
     newLogElement.setAttribute('class', 'logElement ' + logObject.type);
     newLogElement.innerHTML = logObject.message;
     newLogElement.ondblclick = gotoLine.bind(this, logObject);
@@ -172,23 +175,23 @@
   }
 
   function setBar(logObject) {
-    var bar = global.document.getElementById('__consoleBar');
+    var bar = myglobal.document.getElementById('__consoleBar');
     bar.innerHTML = logObject ? logObject.message : '';
     bar.setAttribute('class',
       logObject ? 'logElement ' + logObject.type : '');
   }
 
   function runTurtleJS () {
-    global.document.getElementById('__loadingScreen').style.display = 'block';
+    myglobal.document.getElementById('__loadingScreen').style.display = 'block';
     setTimeout(function(){
       __tjs.runTurtleJS();
-      global.document.getElementById('__loadingScreen').style.display = 'none';
+      myglobal.document.getElementById('__loadingScreen').style.display = 'none';
     },50);
   }
 
-  global.document.getElementById('__clearLogsButton').onclick = function () {
+  myglobal.document.getElementById('__clearLogsButton').onclick = function () {
     setBar(null);
-    var container = global.document.getElementById('__consoleContainer');
+    var container = myglobal.document.getElementById('__consoleContainer');
     container.innerHTML = '';
     __tjs.logs = [];
   };
